@@ -304,7 +304,7 @@ class SubNameBrute:
 
 						if (not self.ignore_intranet) or (not SubNameBrute.is_intranet(answers[0].address)):
 							self._update_found_count()
-							msg = cur_sub_domain.ljust(30) + ips.ljust(10) + self.getServerInfo(cur_sub_domain.strip())
+							msg = cur_sub_domain.ljust(30) + ips+'  ' + self.getServerInfo(cur_sub_domain.strip())
 							self.msg_queue.put(msg)
 							self.msg_queue.put('status')
 							self.outfile.write(cur_sub_domain.ljust(30) + '\t' + ips + '\t'+self.getServerInfo(cur_sub_domain.strip()) +'\n')
