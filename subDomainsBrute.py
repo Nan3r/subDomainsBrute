@@ -204,20 +204,23 @@ class SubNameBrute:
 
 	def getServerInfo(self, domain):
 		import requests
-		domain = 'http://'+domain
-		response = requests.get(domain, timeout=3)
-		r = response.headers
-		xpower = ''
-		server = ''
-		title = ''
-		xpower = r['X-Powered-By']
-		server = r['Server']
-		try:  
-			_ = re.search('<title>(.*?)</title>', requests.get(domain).txt)  
-			title = _.group(1)  
+		try:
+			domain = 'http://'+domain
+			response = requests.get(domain, timeout=1)
+			r = response.headers
+			xpower = ''
+			server = ''
+			title = ''
+			xpower = r['X-Powered-By']
+			server = r['Server']
+			try:  
+				_ = re.search('<title>(.*?)</title>', requests.get(domain).txt)  
+				title = _.group(1)  
+			except:  
+				pass 
+			return 'Server: '+server+' '+xpower+' title: '+title
 		except:  
-			pass 
-		return 'Server: '+server+' '+xpower+' title: '+title
+			return ''
 
 	def _print_msg(self):
 		while not self.STOP_ME:
